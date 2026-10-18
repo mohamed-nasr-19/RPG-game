@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+     @keyframes grow {
+  from {
+    stroke-dasharray:
+      calc(var(--circumference) * 0.05),
+      var(--circumference);
+  }
+  to {
+    stroke-dasharray:
+      calc(var(--circumference) * 0.25),
+      var(--circumference);
+  }
+}
+
+ 
+
+@keyframes spin {
+  from {
+    stroke-dashoffset: 0;
+  }
+  to {
+    stroke-dashoffset:
+      calc(var(--circumference) * -0.95);
+  }
+}
+
+ 
+
+circle {
+  /*
+    Calculate the circumference in JS, and
+    apply it as a custom property:
+  */
+  --circumference: 572px;
+  
+
+  animation:
+    grow 1200ms infinite alternate,
+    spin 2400ms infinite alternate;
+}
+    </style>
+</body>
+</html>

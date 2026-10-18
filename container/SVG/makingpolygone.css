@@ -1,0 +1,10 @@
+html {
+    display: grid;
+    place-content: center;
+    height: 100vh;
+    background: hsl(210deg 15% 6%);
+}
+
+svg {
+    outline: 1px solid hsl(210deg 15% 30%);
+}

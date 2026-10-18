@@ -1,0 +1,112 @@
+{
+    "commonSword": {
+    "type": "weapon",
+    "name": "Common Iron Sword",
+    "rarity": "common",
+    "value": 25
+  },
+  "dagger": {
+    "type": "weapon",
+    "name": "Iron Dagger",
+    "rarity": "rare",
+    "value": 30,
+    "damage": 6
+  },
+   "axe": {
+    "type": "weapon",
+    "name": "Axe",
+    "rarity": "common",
+    "value": 25
+  },
+  "rustedDagger": {
+    "type": "weapon",
+    "name": "Rusted Dagger",
+    "rarity": "common",
+    "value": 10
+  },
+  "woodenBow": {
+    "type": "weapon",
+    "name": "Wooden Bow",
+    "rarity": "common",
+    "value": 25
+  },
+   "hunterKnife": {
+    "type": "weapon",
+    "name": "Hunter's Knife",
+    "rarity": "common",
+    "value": 2500
+  },
+  "steelLongsword": {
+    "type": "weapon",
+    "name": "Steel Longsword",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "shadowDagger": {
+    "type": "weapon",
+    "name": "Shadow Dagger",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "oakWarbow": {
+    "type": "weapon",
+    "name": "Oak Warbow",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "emberStaff": {
+    "type": "weapon",
+    "name": "Ember Staff",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "vikingAxe": {
+    "type": "weapon",
+    "name": "Viking Axe",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+   "bloodFang": {
+    "type": "weapon",
+    "name": "Blood Fang",
+    "rarity": "rare",
+    "value": 2500
+  },
+  "nightpiercer": {
+    "type": "weapon",
+    "name": "Nightpiercer",
+    "rarity": "rare",
+    "value": 2500
+  },
+  "dragonboneBow": {
+    "type": "weapon",
+    "name": "Dragonbone Bow",
+    "rarity": "rare",
+    "value": 2500
+  },
+   "arcaneScepter": {
+    "type": "weapon",
+    "name": "Arcane Scepter",
+    "rarity": "rare",
+    "value": 2500
+  },
+  "doomforgedAxe": {
+    "type": "weapon",
+    "name": "Doomforged Axe",
+    "rarity": "rare",
+    "value": 2500
+  },
+ "magicalStaff": {
+   "type": "weapon",
+    "name": "magical Staff",
+    "rarity": "rare",
+    "value": 2500,
+    "cooldwon" : "500"
+ },
+  "phoenixRing": {
+    "type": "weapon",
+    "name": "Phoenix Ring",
+    "rarity": "rare",
+    "value": 2500
+  }
+}

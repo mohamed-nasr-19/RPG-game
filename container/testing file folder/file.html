@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Now</title>
+    <style>
+        :root { font-family: Arial, sans-serif; color: #fff; }
+        * { box-sizing: border-box; }
+        body {
+            margin: 0; min-height: 100vh; display: grid; place-items: center;
+            background: linear-gradient(145deg, #4d8edb, #8b5fc4);
+        }
+        .weather-app { width: min(92vw, 650px); padding: 28px; border-radius: 24px;
+            background: rgba(255,255,255,.16); box-shadow: 0 20px 50px #17295155;
+            backdrop-filter: blur(12px); }
+        h1 { margin: 0 0 18px; font-size: 2rem; }
+        .search { display: flex; gap: 10px; }
+        input, button { border: 0; border-radius: 12px; padding: 13px 16px; font-size: 1rem; }
+        input { flex: 1; color: #233; }
+        button { cursor: pointer; background: #ffd166; color: #342700; font-weight: bold; }
+        .location { margin-top: 25px; display: flex; justify-content: space-between; align-items: center; }
+        .location h2 { margin: 0; font-size: 1.7rem; }
+        .date { opacity: .8; margin-top: 5px; }
+        .current { display: flex; align-items: center; gap: 20px; margin: 24px 0; }
+        .icon { font-size: 5rem; }
+        .temperature { font-size: 4rem; font-weight: bold; }
+        .condition { font-size: 1.2rem; text-transform: capitalize; }
+        .details { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .detail, .forecast { padding: 14px; border-radius: 15px; background: #ffffff1c; }
+        .detail strong { display: block; margin-top: 5px; font-size: 1.1rem; }
+        .forecast-title { margin: 25px 0 10px; }
+        .forecast-list { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; }
+        .forecast { text-align: center; }
+        .forecast .icon { font-size: 2rem; }
+        .error { color: #ffe0e0; margin-top: 12px; }
+        @media (max-width: 520px) { .weather-app { padding: 20px; } .details, .forecast-list { grid-template-columns: repeat(2, 1fr); } }
+    </style>
+</head>
+<body>
+    <main class="weather-app">
+        <h1>Weather Now</h1>
+        <form class="search" id="search-form">
+            <input id="city-input" placeholder="Search for a city..." aria-label="City" required>
+            <button type="submit">Search</button>
+        </form>
+        <div id="weather" aria-live="polite"></div>
+    </main>
+    <script>
+        const weather = document.querySelector('#weather');
+        const input = document.querySelector('#city-input');
+        const icons = { 0:'☀️', 1:'🌤️', 2:'⛅', 3:'☁️', 45:'🌫️', 48:'🌫️', 51:'🌦️', 53:'🌦️', 55:'🌧️', 61:'🌧️', 63:'🌧️', 65:'🌧️', 71:'🌨️', 73:'🌨️', 75:'❄️', 80:'🌦️', 81:'🌧️', 82:'⛈️', 95:'⛈️', 99:'⛈️' };
+        async function loadWeather(city) {
+            weather.innerHTML = '<p>Loading weather...</p>';
+            try {
+                const geo = await fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${encodeURIComponent(city)}&count=1&language=en&format=json`).then(r => r.json());
+                if (!geo.results?.length) throw new Error('City not found.');
+                const place = geo.results[0];
+                const data = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${place.latitude}&longitude=${place.longitude}&current=temperature_2m,relative_humidity_2m,apparent_temperature,weather_code,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto`).then(r => r.json());
+                const c = data.current, d = data.daily;
+                weather.innerHTML = `<section class="location"><div><h2>${place.name}, ${place.country_code}</h2><div class="date">${new Date().toLocaleDateString(undefined,{weekday:'long',month:'long',day:'numeric'})}</div></div></section><section class="current"><div class="icon">${icons[c.weather_code] || '🌡️'}</div><div><div class="temperature">${Math.round(c.temperature_2m)}°C</div><div class="condition">${condition(c.weather_code)}</div></div></section><section class="details"><div class="detail">Feels like<strong>${Math.round(c.apparent_temperature)}°C</strong></div><div class="detail">Humidity<strong>${c.relative_humidity_2m}%</strong></div><div class="detail">Wind<strong>${Math.round(c.wind_speed_10m)} km/h</strong></div></section><h3 class="forecast-title">5-day forecast</h3><section class="forecast-list">${d.time.slice(0,5).map((day,i) => `<div class="forecast"><b>${new Date(day).toLocaleDateString(undefined,{weekday:'short'})}</b><div class="icon">${icons[d.weather_code[i]] || '🌡️'}</div><b>${Math.round(d.temperature_2m_max[i])}° / ${Math.round(d.temperature_2m_min[i])}°</b></div>`).join('')}</section>`;
+            } catch (e) { weather.innerHTML = `<p class="error">${e.message} Please try another city.</p>`; }
+        }
+        function condition(code) { return code === 0 ? 'Clear sky' : code < 4 ? 'Partly cloudy' : code < 50 ? 'Foggy' : code < 70 ? 'Rainy' : code < 80 ? 'Snowy' : 'Stormy'; }
+        document.querySelector('#search-form').addEventListener('submit', e => { e.preventDefault(); loadWeather(input.value.trim()); });
+        loadWeather('London');
+    </script>
+</body>
+</html>

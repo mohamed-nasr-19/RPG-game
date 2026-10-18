@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stat Widget</title>
+<style>
+  :root {
+    --badge-dark: #4a3520;
+    --badge-mid: #6b4a28;
+    --badge-light: #a6743f;
+    --badge-rim: #f2c368;
+    --hp-red-top: #ef4b4b;
+    --hp-red-bottom: #b3161c;
+    --hp-red-shine: #ff8a8a;
+    --mana-teal-top: #6fe89a;
+    --mana-teal-bottom: #17a866;
+    --mana-teal-shine: #b9ffd6;
+    --energy-yellow-top: #ffe066;
+    --energy-yellow-bottom: #e69b0e;
+    --energy-yellow-shine: #fff6c2;
+    --bar-outline: #26160c;
+    --text-cream: #fff6df;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: 'Trebuchet MS', 'Segoe UI', Arial, sans-serif;
+  }
+
+  .stat-widget {
+    position: fixed;
+    top: 16px;
+    left: 16px;
+    display: flex;
+    align-items: center;
+    width: min(90vw, 520px);
+  }
+
+  /* ---- Badge wrapper (holds hex + circle, itself unclipped) ---- */
+  .badge-wrap {
+    position: relative;
+    z-index: 3;
+    width:84px;
+    height: 84px;
+    flex-shrink: 0;
+    margin-right: -30px;
+  }
+
+  /* ---- Level badge (hex only, clipped) ---- */
+  .badge {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    clip-path: polygon(50% 0%, 93% 25%, 93% 75%, 50% 100%, 7% 75%, 7% 25%);
+    background: linear-gradient(155deg, var(--badge-light) 0%, var(--badge-mid) 55%, var(--badge-dark) 100%);
+    box-shadow:
+      0 0 0 4px var(--badge-rim),
+      0 0 0 6px var(--badge-dark),
+      0 6px 10px rgba(0,0,0,0.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge .icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 35% 30%, #d8a874, #a9793f 65%, #7c561f 100%);
+    border: 2px solid #3a2410;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+
+  /* ---- Level circle: sibling of .badge, not clipped ---- */
+  .level-circle {
+    position: absolute;
+    bottom: -10px;
+    left: 25px;
+    z-index: 4;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: linear-gradient(155deg, var(--badge-light) 0%, var(--badge-mid) 60%, var(--badge-dark) 100%);
+    border: 3px solid var(--badge-rim);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-cream);
+    font-weight: 900;
+    font-size: 14px;
+    text-shadow: 0 1px 0 #000, 0 0 3px rgba(0,0,0,0.6);
+    box-shadow: 0 3px 5px rgba(0,0,0,0.45), inset 0 1px 1px rgba(255,255,255,0.3);
+  }
+
+  /* ---- Bars column ---- */
+  .bars {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 34px;
+  }
+
+  .bar {
+    position: relative;
+    height: 30px;
+    border-radius: 15px;
+    border: 3px solid var(--bar-outline);
+    overflow: hidden;
+    box-shadow: inset 0 2px 3px rgba(255,255,255,0.35), inset 0 -4px 6px rgba(0,0,0,0.35), 0 3px 4px rgba(0,0,0,0.25);
+  }
+
+  .bar-fill {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hp .bar-fill {
+    background: linear-gradient(180deg, var(--hp-red-shine) 0%, var(--hp-red-top) 25%, var(--hp-red-bottom) 100%);
+  }
+
+  .mana .bar-fill {
+    background: linear-gradient(180deg, var(--mana-teal-shine) 0%, var(--mana-teal-top) 25%, var(--mana-teal-bottom) 100%);
+  }
+
+  .mana { height: 22px; }
+
+  .energy .bar-fill {
+    background: linear-gradient(180deg, var(--energy-yellow-shine) 0%, var(--energy-yellow-top) 25%, var(--energy-yellow-bottom) 100%);
+  }
+
+  .energy { height: 16px; }
+
+  .bar-fill::before {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 6px;
+    right: 6px;
+    height: 35%;
+    background: rgba(255,255,255,0.5);
+    border-radius: 50px;
+    filter: blur(1px);
+  }
+
+  .bar-text {
+    position: relative;
+    z-index: 2;
+    color: var(--text-cream);
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    text-shadow: 0 2px 0 rgba(0,0,0,0.55), 0 0 3px rgba(0,0,0,0.4);
+  }
+
+  .hp .bar-text { font-size: 16px; }
+  .mana .bar-text { font-size: 13px; }
+  .energy .bar-text { 
+    font-size: 10px; color: lab(19% 6.15 27.39);
+     text-shadow: 0 1px 0 rgba(255,255,255,0.4); 
+    }
+
+  .bar-back {
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+      90deg,
+      rgba(255,255,255,0.06) 0px,
+      rgba(255,255,255,0.06) 2px,
+      transparent 2px,
+      transparent 20px
+    );
+    z-index: 1;
+    pointer-events: none;
+  }
+</style>
+</head>
+<body>
+
+  <div class="stat-widget">
+    <div class="badge-wrap">
+      <div class="badge">
+        <div class="icon">🐻</div>
+      </div>
+      <div class="level-circle">7</div>
+    </div>
+    <div class="bars">
+      <div class="bar hp">
+        <div class="bar-fill" style="width:100%;">
+          <span class="bar-text">450 / 450</span>
+        </div>
+        <div class="bar-back"></div>
+      </div>
+      <div class="bar mana">
+        <div class="bar-fill" style="width:100%;">
+          <span class="bar-text">100 / 100</span>
+        </div>
+        <div class="bar-back"></div>
+      </div>
+      <div class="bar energy">
+        <div class="bar-fill" style="width:100%;">
+          <span class="bar-text">50 / 50</span>
+        </div>
+        <div class="bar-back"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

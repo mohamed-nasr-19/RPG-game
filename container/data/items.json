@@ -1,0 +1,15 @@
+{
+  "low-quality potionOfHealing": {
+    "rank" : "low-quality",
+    "type": "item",
+    "name": "Common Potion",
+    "rarity": "common",
+    "value": 100
+  },
+  "High quality gem" : {
+    "type" : "item",
+    "name" : "High quality gem",
+    "rarity" : "rare",
+    "value" : "2000"
+  }
+}

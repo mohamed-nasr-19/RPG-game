@@ -1,0 +1,98 @@
+{
+  "goblin": {
+    "gold": {
+      "min": 5,
+      "max": 15
+    },
+    "items": [
+      { "item": "rustedDagger", "chance": 20 },
+      { "item": "commonHelmet", "chance": 12 },
+      { "item": "commonBoots", "chance": 12 },
+      { "item": "commonPants", "chance": 10 },
+      { "item": "potionOfHealing", "chance": 25 },
+      { "item": "commonSword", "chance": 5 },
+      { "item": "commonGauntlet", "chance": 10 }
+    ]
+  },
+
+  "orc": {
+    "gold": {
+      "min": 15,
+      "max": 30
+    },
+    "items": [
+      { "item": "ironBuckler", "chance": 20 },
+      { "item": "commonChestarmor", "chance": 15 },
+      { "item": "commonGauntlet", "chance": 12 },
+      { "item": "commonPants", "chance": 10 },
+      { "item": "steelLongsword", "chance": 7 },
+      { "item": "potionOfHealing", "chance": 20 },
+      { "item": "vikingAxe", "chance": 4 }
+    ]
+  },
+
+  "skeleton": {
+    "gold": {
+      "min": 8,
+      "max": 20
+    },
+    "items": [
+      { "item": "rustedDagger", "chance": 25 },
+      { "item": "commonHelmet", "chance": 15 },
+      { "item": "commonPants", "chance": 12 },
+      { "item": "commonBoots", "chance": 12 },
+      { "item": "commonSword", "chance": 5 },
+      { "item": "potionOfHealing", "chance": 15 }
+    ]
+  },
+
+  "wolf": {
+    "gold": {
+      "min": 10,
+      "max": 25
+    },
+    "items": [
+      { "item": "wolfhideChestplate", "chance": 12 },
+      { "item": "wolfhideBoots", "chance": 15 },
+      { "item": "wolfhidePants", "chance": 12 },
+      { "item": "wolfhideHelmet", "chance": 8 },
+      { "item": "woodenBow", "chance": 10 },
+      { "item": "hunterKnife", "chance": 6 },
+      { "item": "potionOfHealing", "chance": 20 }
+    ]
+  },
+
+  "witch": {
+    "gold": {
+      "min": 20,
+      "max": 45
+    },
+    "items": [
+      { "item": "emberStaff", "chance": 10 },
+      { "item": "shadowDagger", "chance": 8 },
+      { "item": "silverAmulet", "chance": 7 },
+      { "item": "moonlightRing", "chance": 5 },
+      { "item": "potionOfHealing", "chance": 35 },
+      { "item": "commonChestarmor", "chance": 8 },
+      { "item": "commonPauldrons", "chance": 8 }
+    ]
+  },
+
+  "dragon": {
+    "gold": {
+      "min": 100,
+      "max": 250
+    },
+    "items": [
+      { "item": "dragonboneBow", "chance": 10 },
+      { "item": "titanGuard", "chance": 6 },
+      { "item": "arcaneScepter", "chance": 5 },
+      { "item": "frostveilArmor", "chance": 5 },
+      { "item": "voidwalkerBoots", "chance": 4 },
+      { "item": "phoenixRing", "chance": 2 },
+      { "item": "doomforgedAxe", "chance": 3 },
+      { "item": "bloodFang", "chance": 2 },
+      { "item": "nightpiercer", "chance": 1 }
+    ]
+  }
+}

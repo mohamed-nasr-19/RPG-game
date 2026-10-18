@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>XP Bar</title>
+<style>
+  :root {
+    --gold-1: #ffe28a;
+    --gold-2: #ffb92e;
+    --gold-3: #d97b16;
+    --gold-4: #7a4a0c;
+    --bg-dark: #0e0a06;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #352820;
+    font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+  }
+
+  .xp-widget {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 14px 22px;
+    background: linear-gradient(180deg, #221812 0%, #120d09 100%);
+    border-radius: 40px;
+    border: 1px solid #3a2a17;
+    box-shadow:
+      0 8px 24px rgba(0,0,0,0.5),
+      inset 0 1px 0 rgba(255,255,255,0.04);
+  }
+
+  /* Medallion */
+  .xp-medal {
+    position: relative;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .xp-medal svg { width: 100%; height: 100%; }
+
+  .xp-medal-text {
+    position: absolute;
+    font-weight: 800;
+    font-style: italic;
+    font-size: 18px;
+    letter-spacing: 1px;
+    color: var(--bg-dark);
+    text-shadow: 0 1px 0 rgba(255,255,255,0.35);
+  }
+
+  /* XP flame label */
+  .xp-flag {
+    display: flex;
+    align-items: center;
+    margin-left: -6px;
+  }
+  .xp-flag span {
+    font-weight: 900;
+    font-style: italic;
+    font-size: 20px;
+    letter-spacing: 1px;
+    background: linear-gradient(180deg, var(--gold-1), var(--gold-3));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 0 0 10px rgba(255,150,20,0.5);
+  }
+
+  /* Progress track */
+  .xp-track-wrap {
+    position: relative;
+    flex: 1;
+    min-width: 220px;
+  }
+
+  .xp-track {
+    position: relative;
+    height: 30px;
+    border-radius: 20px;
+    background: linear-gradient(180deg, #0a0705, #1c130c);
+    border: 1px solid #4a3520;
+    box-shadow:
+      inset 0 2px 5px rgba(0,0,0,0.8),
+      inset 0 -1px 0 rgba(255,255,255,0.03);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+  }
+
+  .xp-fill {
+    position: relative;
+    height: 100%;
+    border-radius: 20px 8px 8px 20px;
+    background: linear-gradient(180deg, #ffe9a8 0%, #ffb62e 35%, #e6820c 70%, #ffcf5e 100%);
+    box-shadow:
+      0 0 14px rgba(255,153,20,0.85),
+      inset 0 2px 2px rgba(255,255,255,0.6),
+      inset 0 -3px 4px rgba(140,60,0,0.6);
+    animation: fillIn 1.4s cubic-bezier(.2,.9,.25,1) both;
+  }
+
+  .xp-fill::after {
+    /* moving glossy sheen */
+    content: "";
+    position: absolute;
+    top: 0; left: -40%;
+    width: 40%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.55), transparent);
+    animation: sheen 2.6s ease-in-out infinite;
+  }
+
+  @keyframes fillIn {
+    from { width: 0; }
+  }
+  @keyframes sheen {
+    0%   { left: -40%; }
+    60%  { left: 110%; }
+    100% { left: 110%; }
+  }
+
+  .xp-count {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.5px;
+  }
+  .xp-count .cur {
+    color: #6fd3ff;
+    text-shadow: 0 0 6px rgba(80,180,255,0.7);
+  }
+  .xp-count .sep,
+  .xp-count .max {
+    color: #f3e6c8;
+    opacity: 0.85;
+  }
+
+  /* Diamond icon */
+  .xp-diamond {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+    filter: drop-shadow(0 0 8px rgba(255,150,20,0.6));
+  }
+</style>
+</head>
+<body>
+
+  <div class="xp-widget">
+    <div class="xp-medal">
+      <svg viewBox="0 0 100 100">
+        <defs>
+          <linearGradient id="medalGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#ffe9a8"/>
+            <stop offset="45%" stop-color="#ffb62e"/>
+            <stop offset="100%" stop-color="#a85c0a"/>
+          </linearGradient>
+        </defs>
+        <circle cx="50" cy="50" r="46" fill="url(#medalGrad)" stroke="#6b3a0a" stroke-width="2"/>
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#7a430c" stroke-width="2"/>
+        <g stroke="#8a4d10" stroke-width="2" opacity="0.5">
+          <line x1="50" y1="4" x2="50" y2="14"/>
+          <line x1="50" y1="86" x2="50" y2="96"/>
+          <line x1="4" y1="50" x2="14" y2="50"/>
+          <line x1="86" y1="50" x2="96" y2="50"/>
+        </g>
+      </svg>
+      <div class="xp-medal-text">XP</div>
+    </div>
+
+    <div class="xp-flag"><span>XP</span></div>
+
+    <div class="xp-track-wrap">
+      <div class="xp-track">
+        <div class="xp-fill" style="width: 32%;"></div>
+        <div class="xp-count">
+          <span class="cur">320</span><span class="sep"> / </span><span class="max">1000</span>
+        </div>
+      </div>
+    </div>
+
+    <svg class="xp-diamond" viewBox="0 0 100 100">
+      <defs>
+        <linearGradient id="diaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#ffe9a8"/>
+          <stop offset="50%" stop-color="#ffb62e"/>
+          <stop offset="100%" stop-color="#c76a0c"/>
+        </linearGradient>
+      </defs>
+      <rect x="20" y="20" width="60" height="60" rx="8"
+        transform="rotate(45 50 50)"
+        fill="url(#diaGrad)" stroke="#7a430c" stroke-width="3"/>
+    </svg>
+  </div>
+
+</body>
+</html>

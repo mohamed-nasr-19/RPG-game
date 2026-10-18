@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Livre Numérique Interactif</title>
+    
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            gap: 30px;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        /* Conteneur global du livre */
+        .book {
+            position: relative;
+            width: 350px;
+            height: 450px;
+            perspective: 1500px; /* Effet de profondeur 3D */
+            transition: transform 0.5s;
+        }
+
+        /* Chaque feuille de papier */
+        .paper {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            transform-style: preserve-3d;
+            transform-origin: left center; /* La page pivote sur le bord gauche (reliure) */
+            transition: transform 0.6s ease-in-out;
+        }
+
+        /* Styles communs pour les faces Avant et Arrière */
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: white;
+            backface-visibility: hidden; /* Cache le contenu inversé lors du retournement */
+            padding: 30px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border-radius: 0 10px 10px 0;
+        }
+
+        /* La face arrière est initialement retournée à 180 degrés */
+        .back {
+            transform: rotateY(180deg);
+            border-radius: 10px 0 0 10px;
+            background-color: #f9f9f9;
+        }
+
+        /* Classe déclenchée par JS pour tourner la page */
+        .flipped {
+            transform: rotateY(-180deg);
+        }
+
+        /* Boutons de navigation */
+        button {
+            border: none;
+            background-color: #333;
+            color: white;
+            padding: 12px 24px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.2s;
+            z-index: 100;
+        }
+
+        button:hover {
+            background-color: #555;
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        h1, h2 {
+            margin-top: 0;
+            color: #222;
+        }
+
+        p {
+            color: #666;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Bouton Précédent -->
+    <button id="prev-btn">Précédent</button>
+
+    <!-- Structure du Livre -->
+    <div id="book" class="book">
+        
+        <!-- Page 1 (Couverture) -->
+        <div id="p1" class="paper" style="z-index: 3;">
+            <div class="front" style="background: #2c3e50; color: white;">
+                <h1 style="color: white;">Mon Livre HTML</h1>
+                <p style="color: #bdc3c7;">Cliquez sur "Suivant" pour commencer la lecture.</p>
+            </div>
+            <div class="back">
+                <h2>Introduction</h2>
+                <p>Ceci est l'introduction de votre livre numérique en une seule page.</p>
+            </div>
+        </div>
+
+        <!-- Page 2 -->
+        <div id="p2" class="paper" style="z-index: 2;">
+            <div class="front">
+                <h2>Chapitre 1</h2>
+                <p>Voici le début de l'histoire. Tout fonctionne grâce aux transitions CSS 3D.</p>
+            </div>
+            <div class="back">
+                <h2>Chapitre 2</h2>
+                <p>Le JavaScript se charge quant à lui de modifier l'ordre des pages (z-index).</p>
+            </div>
+        </div>
+
+        <!-- Page 3 (Quatrième de couverture) -->
+        <div id="p3" class="paper" style="z-index: 1;">
+            <div class="front">
+                <h2>Conclusion</h2>
+                <p>Vous arrivez à la fin de cette démonstration interactive.</p>
+            </div>
+            <div class="back" style="background: #2c3e50; color: white;">
+                <h1 style="color: white;">Fin</h1>
+                <p style="color: #bdc3c7;">Merci d'avoir lu !</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Bouton Suivant -->
+    <button id="next-btn">Suivant</button>
+
+    <script>
+        const prevBtn = document.querySelector("#prev-btn");
+        const nextBtn = document.querySelector("#next-btn");
+        const book = document.querySelector("#book");
+
+        const paper1 = document.querySelector("#p1");
+        const paper2 = document.querySelector("#p2");
+        const paper3 = document.querySelector("#p3");
+
+        // Gestionnaires d'événements
+        prevBtn.addEventListener("click", goPrevPage);
+        nextBtn.addEventListener("click", goNextPage);
+
+        // Variables d'état
+        let currentLocation = 1;
+        let numOfPapers = 3;
+        let maxLocation = numOfPapers + 1;
+
+        // Décale le livre vers la droite pour centrer l'ouverture des pages
+        function openBook() {
+            book.style.transform = "translateX(50%)";
+        }
+
+        // Réaligne le livre lorsqu'il est fermé (au début ou à la fin)
+        function closeBook(isAtBeginning) {
+            if(isAtBeginning) {
+                book.style.transform = "translateX(0%)";
+            } else {
+                book.style.transform = "translateX(100%)";
+            }
+        }
+
+        function goNextPage() {
+            if(currentLocation < maxLocation) {
+                switch(currentLocation) {
+                    case 1:
+                        openBook();
+                        paper1.classList.add("flipped");
+                        paper1.style.zIndex = 1;
+                        break;
+                    case 2:
+                        paper2.classList.add("flipped");
+                        paper2.style.zIndex = 2;
+                        break;
+                    case 3:
+                        paper3.classList.add("flipped");
+                        paper3.style.zIndex = 3;
+                        closeBook(false);
+                        break;
+                    default:
+                        throw new Error("État inconnu");
+                }
+                currentLocation++;
+            }
+        }
+
+        function goPrevPage() {
+            if(currentLocation > 1) {
+                switch(currentLocation) {
+                    case 2:
+                        closeBook(true);
+                        paper1.classList.remove("flipped");
+                        paper1.style.zIndex = 3;
+                        break;
+                    case 3:
+                        paper2.classList.remove("flipped");
+                        paper2.style.zIndex = 2;
+                        break;
+                    case 4:
+                        openBook();
+                        paper3.classList.remove("flipped");
+                        paper3.style.zIndex = 1;
+                        break;
+                    default:
+                        throw new Error("État inconnu");
+                }
+                currentLocation--;
+            }
+        }
+    </script>
+</body>
+</html>

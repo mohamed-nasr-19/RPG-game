@@ -1,0 +1,110 @@
+{
+"commonChestarmor": {
+    "type": "armor",
+    "name": "Common Chestplate",
+    "rarity": "common",
+    "value": 20
+  },
+  "commonHelmet": {
+    "type": "armor",
+    "name": "Common Helmet",
+    "rarity": "common",
+    "value": 20
+  },
+  "commonGauntlet": {
+    "type": "armor",
+    "name": "Common Gauntlet",
+    "rarity": "common",
+    "value": 20
+  },
+  "commonBoots": {
+    "type": "armor",
+    "name": "Common Boots",
+    "rarity": "common",
+    "value": 20
+  },
+  "commonPants": {
+    "type": "armor",
+    "name": "Common Pants",
+    "rarity": "common",
+    "value": 20
+  },
+  "commonPauldrons": {
+    "type": "armor",
+    "name": "Common Pauldrons",
+    "rarity": "common",
+    "value": 20
+  },
+   "copperRing": {
+    "type": "armor",
+    "name": "Copper Ring",
+    "rarity": "common",
+    "value": 40
+  },
+   "leatherCap": {
+    "type": "armor",
+    "name": "Leather Cap",
+    "rarity": "common",
+    "value": 65
+  },
+  "wolfhideChestplate": {
+    "type": "armor",
+    "name": "Wolfhide Chestplate",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "wolfhideBoots": {
+    "type": "armor",
+    "name": "Wolfhide Boots",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "wolfhidePants": {
+    "type": "armor",
+    "name": "Wolfhide Pants",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "wolfhideHelmet": {
+    "type": "armor",
+    "name": "Wolfhide Helmet",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "knightShield": {
+    "type": "armor",
+    "name": "Knight's Shield",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+   "rangerBoots": {
+    "type": "armor",
+    "name": "Ranger's Boots",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "moonlightRing": {
+    "type": "armor",
+    "name": "Moonlight Ring",
+    "rarity": "uncommon",
+    "value": 2500
+  },
+  "titanGuard": {
+    "type": "armor",
+    "name": "Titan's Guard",
+    "rarity": "rare",
+    "value": 2500
+  },
+  "frostveilArmor": {
+    "type": "armor",
+    "name": "Frostveil Armor",
+    "rarity": "rare",
+    "value": 2500
+  },
+  "voidwalkerBoots": {
+    "type": "armor",
+    "name": "Voidwalker Boots",
+    "rarity": "rare",
+    "value": 2500
+  }
+}

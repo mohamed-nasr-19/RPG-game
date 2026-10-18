@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My RPG game</title>
+    <style>
+        
+body{
+    display: flex;
+    justify-content: center;
+            align-items: center;
+            background-color: black;
+            margin-bottom: 250px;
+        }
+        #game-container{
+            position: relative;
+            width: 1920px;
+            height: 900px;
+        }
+        #canvas-game{
+            display: block;
+            width: 1920px;
+            height: 900px;
+        }
+
+        .stat{
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            position: absolute;
+            top: 20px;
+            left: 20px;
+        }
+
+        .stat-bar{
+            position: relative;
+            width: 220px;
+            height: 22px;
+            background: #1a1a1a;
+            border: 1px solid #000;
+            border-radius: 4px;
+            overflow: hidden;
+            box-shadow:
+                inset 0 2px 3px rgba(0,0,0,0.8),
+                inset 0 -1px 1px rgba(255,255,255,0.15),
+                0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .stat-bar::after{
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                120deg,
+                transparent 20%,
+                rgba(255,255,255,0.25) 45%,
+                transparent 60%
+            );
+            background-size: 250% 100%;
+            animation: sheen 4s linear infinite;
+            pointer-events: none;
+        }
+        @keyframes sheen{
+            0%{ background-position: 150% 0; }
+            100%{ background-position: -50% 0; }
+        }
+
+        .stat-bar-fill{
+            height: 100%;
+            width: 100%;
+            transition: width 0.15s ease-out;
+            background-image:
+                linear-gradient(var(--bar-top), var(--bar-bottom)),
+                repeating-linear-gradient(
+                    90deg,
+                    transparent 0px,
+                    transparent 18px,
+                    rgba(0,0,0,0.25) 18px,
+                    rgba(0,0,0,0.25) 20px
+                );
+        }
+
+        .stat-bar-label{
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: sans-serif;
+            font-size: 12px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.9);
+            pointer-events: none;
+        }
+
+        .hp{ --bar-top: #ff6b6b; --bar-bottom: #a30000; }
+        .xp{ --bar-top: #ffe066; --bar-bottom: #b38f00; }
+        .mana{ --bar-top: #66b3ff; --bar-bottom: #0044aa; }
+        .energy{ --bar-top: #7dff8f; --bar-bottom: #158029; }
+
+        .stat-bar.flash .stat-bar-fill{
+            animation: hitFlash 0.25s ease-out;
+        }
+        @keyframes hitFlash{
+            0%{ filter: brightness(2.5); }
+            100%{ filter: brightness(1); }
+        }
+
+        .stat-bar.low-hp{
+            animation: lowHpPulse 1s ease-in-out infinite;
+        }
+        @keyframes lowHpPulse{
+            0%, 100%{ box-shadow: inset 0 2px 3px rgba(0,0,0,0.8), 0 0 4px rgba(255,0,0,0.4); }
+            50%{ box-shadow: inset 0 2px 3px rgba(0,0,0,0.8), 0 0 14px rgba(255,0,0,0.9); }
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container">
+        <canvas id="canvas-game"></canvas>
+
+        <div class="stat">
+            <div class="stat-bar hp" id="HP-bar">
+                <div class="stat-bar-fill" id="HP-fill"></div>
+                <div class="stat-bar-label" id="HP-label"></div>
+            </div>
+            <div class="stat-bar xp" id="XP-bar">
+                <div class="stat-bar-fill" id="XP-fill"></div>
+                <div class="stat-bar-label" id="XP-label"></div>
+            </div>
+            <div class="stat-bar mana" id="Mana-bar">
+                <div class="stat-bar-fill" id="Mana-fill"></div>
+                <div class="stat-bar-label" id="Mana-label"></div>
+            </div>
+            <div class="stat-bar energy" id="Energy-bar">
+                <div class="stat-bar-fill" id="Energy-fill"></div>
+                <div class="stat-bar-label" id="Energy-label"></div>
+            </div>
+        </div>
+    </div>
+
+   
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <style>
+body{
+    display: flex;
+    margin: 0px;
+    justify-content :center;
+    align-items: center;
+    background-color: black;
+    color: white;
+    min-height: 100vh;
+    overflow: auto;
+
+}
+#game-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    box-sizing: border-box;
+}
+#board{
+    display: grid;
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    color: white;
+    border: 1px solid white;
+    width: clamp(300px, 30vw, 700px);
+    border-radius: 5px;
+    aspect-ratio: 1 / 1;
+}
+.square{
+    aspect-ratio: 1 / 1;
+    display: flex;
+    border: 1px solid white;
+    font-size: clamp(70px, 7vw, 150px);
+    justify-content: center;
+     color: white;
+    align-items: center;
+    padding: 10px 20px;
+    box-sizing: border-box;
+}
+#title{
+    padding: 10px 20px;
+    font-size: 50px;
+    background-color: hsl(120, 100%, 40%);
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    border: 3px solid white;
+    border-radius: 10% 50% / 25%;
+}
+#scoreboard{
+    display: flex; 
+    flex-direction : column;
+    justify-content :center;
+    align-items: center;
+    margin: 25px; 
+    font-weight: bold;
+    font-family:system-ui, sans-serif;
+    font-size: clamp(20px, 2vw, 50px);
+    color: black;
+    padding : 10px 20px;
+    border: 3px solid;
+    border-radius: 12px 25px 15px 24px;
+    background-color: yellow;
+}
+#turn-display{
+    font-family: Verdana, Tahoma, sans-serif;
+    font-weight: bold;
+    font-size: clamp(30px, 5vw, 120px);
+    padding: 10px 20px;
+    margin: 25px;
+    border-radius: 54px 21px 35px 65px;
+    background-color: hsl(300, 100%, 40%);
+    border: 2px solid;
+
+}
+#winner-message{
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: clamp(35px, 3vw, 90px);
+    padding: 10px 20px;
+    margin: 25px;
+    border: 3px solid;
+    border-radius: 24px 30px 58px 14px;
+    background-color: black;
+}
+#reset-button{
+     font-family: Arial, Helvetica, sans-serif;
+    font-weight: bold;
+    font-size: clamp(40px,5vw, 110px);
+    padding: 10px 20px;
+    margin: 25px;
+    border: 3px solid;
+    border-radius: 47px 54px 12px 36px;
+    background-color: red;
+    transition: 0.3s;
+}
+#reset-button:hover{
+    background-color:hsl(0, 100%, 37%);
+     transform: translateY(-5px);
+    
+}
+#reset-button:active{
+    background-color: hsl(0, 100%, 25%);
+    transform: scale(0.92);
+}
+.hidden{
+    display: none;
+}
+.hidden1{
+    display: none;
+}
+
+    </style>
+    <div id="game-container">
+        <h1 id="title">tick tac toe</h1>
+        <div id="scoreboard">
+            <div id="X-score">X score:</div>
+            <div id="O-score">O score:</div>
+         <div id="draw-score">draw-score:</div>
+        </div>
+        <div id="board"></div>
+        <div  id="winner-message"></div>
+        <div id="turn-display"></div>
+        <button id="reset-button" class="hidden1">reset Game</button>
+        
+    </div>
+    <script src="tick tac toe game.js"></script>
+</body>
+</html>

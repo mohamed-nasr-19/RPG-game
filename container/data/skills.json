@@ -1,0 +1,497 @@
+{
+  "Fireball": {
+    "identity": {
+      "type": "fire",
+      "name": "Fireball",
+      "requiredLevel": 1
+    },
+    "behaviour": "projectile",
+    
+    "projectile": {
+      "damage": 10,
+      "speed": 10,
+      "atkRange": 200
+    },
+    "cost": {
+      "manaCost": 15,
+      "cooldown": 0,
+      "castTime": 400
+    }
+  },
+
+   "ElectricBolts" : {
+     "identity" : {
+    "name" : "Ice spikes",
+    "type" : "lightning",
+    "requiredLevel" : 10
+    },
+
+    "behaviour" : "projectile",
+    
+    "projectile" : {
+    "Damage" : 8,
+    "speed" : 10,
+    "atkRange" : 250,
+    "chargeReseTime" : 10000,
+    "threeHolds" : [
+      {"smallExplosion" : {
+       "damage" : 30, 
+       "radius" : 40
+      }},
+       {"midExplosion" : {
+       "damage" : 60, 
+       "radius" : 90
+      }},
+       {"bigExplosion" :{
+       "damage" : 120, 
+       "radius" : 150
+      }}
+    ]
+    },
+    "cost" : {
+      "Manacost" : 12,
+      "Cooldown" : 0,
+      "castTime" : 250
+    }
+  },
+
+
+  "MindConfusion": {
+    "identity": {
+      "name": "Mind Control",
+      "type": "spiritual",
+      "requiredLevel": 20
+    },
+    "behaviour": "areaStun",
+    
+    "areaStun": {
+      "damage": 60,
+      "radius": 100,
+      "durationEffect": 3000
+    },
+    "cost": {
+      "manaCost": 25,
+      "cooldown": 12000,
+      "castTime": 250
+    }
+  },
+
+  "WizardDomain": {
+    "identity": {
+      "name": "wizard s' domain",
+      "type": "fire",
+      "requiredLevel": 30
+    },
+    "behaviour": "areaDamage",
+    "areaDamage": {
+      "damage": 10,
+      "radius": 100,
+      "durationEffect": 8000
+    },
+    "cost": {
+      "manaCost": 20,
+      "cooldown": 12000,
+      "castTime": 250
+    }
+  },
+
+  "Landmine": {},
+
+  "El Reno tornado": {
+    "identity": {
+      "name": "El Reno tornado",
+      "type": "wind",
+      "requiredLevel": 40
+    },
+    "behaviour": "projectile",
+    "projectile": {
+      "damage": 25,
+      "speed": 6,
+      "atkRange": 150
+    },
+    "cost": {
+      "manaCost": 25,
+      "cooldown": 12000,
+      "castTime": 300
+    }
+  },
+
+  "Firecracker😏": {
+    "identity": {
+      "name": "Firecracker",
+      "type": "fire",
+      "requiredLevel": 50
+    },
+    "behaviour": "projectile",
+    "projectile": {
+      "damage": 50,
+      "atkRange": 120,
+      "speed": 15
+    },
+    "cost": {
+      "manaCost": 10,
+      "cooldown": 0,
+      "castTime": 250
+    }
+  },
+
+  "Hollow blue😏": {
+    "identity": {
+      "name": "Hollow blue",
+      "type": "electric",
+      "requiredLevel": 70
+    },
+    "behaviour": "projectile",
+    "projectile": {
+      "damage": 50,
+      "speed": 8,
+      "durationEffect": 3000
+    },
+    "cost": {
+      "manaCost": 50,
+      "cooldown": 12000,
+      "castTime": 250
+    }
+  },
+
+  "plazma beam": {},
+
+  
+
+  "Shpere of doom😏": {
+    "identity": {
+      "name": "Shpere of doom",
+      "type": "poisonous",
+      "requiredLevel": 90
+    },
+    "behaviour": "projectile",
+    "projectile": {
+      "damage": 12,
+      "speed": 6,
+      "durationEffect": 8000,
+      "atkRange": 50
+    },
+    "cost": {
+      "manaCost": 15,
+      "cooldown": 0,
+      "castTime": 250
+    }
+  },
+
+  "Cleave spell😏": {
+    "identity": {
+      "name": "Cleave spell",
+      "type": "spacecut",
+      "requiredLevel": 100
+    },
+    "behaviour": "instant",
+    "instant": {
+      "damage": 12,
+      "atkRange": 100,
+      "durationEffect": 3000
+    },
+    "cost": {
+      "manaCost": 50,
+      "cooldown": 0,
+      "castTime": 150
+    }
+  },
+
+  "Acid Rain": {},
+
+  "restoration": {
+    "identity": {
+      "name": "restoration",
+      "type": "healing",
+      "requiredLevel": 110
+    },
+    "behaviour": "Healing",
+    "areaHealing": {
+      "radius": 120,
+      "healingEffect": 0.2
+    },
+    "cost": {
+      "manaCost": 40,
+      "cooldown": 10000,
+      "castTime": 250
+    }
+  },
+
+  "Arctic wind😏": {
+    "identity": {
+      "name": "Arctic wind",
+      "type": "cold",
+      "requiredLevel": 120
+    },
+    "behaviour": "projectile",
+    "projectile": {
+      "damage": 50,
+      "atkRange": 35,
+      "durationEffect": 4000
+    },
+    "cost": {
+      "manaCost": 25,
+      "cooldown": 10000,
+      "castTime": 250
+    }
+  },
+
+  "Piercing stone": {},
+
+  "Earth wall😏": {
+    "identity": {
+      "name": "Earth wall",
+      "type": "earth",
+      "requiredLevel": 130
+    },
+    "behaviour": "object",
+    "object": {
+      "durationEffect": 6000
+    },
+    "cost": {
+      "manaCost": 50,
+      "cooldown": 12000,
+      "castTime": 250
+    }
+  },
+
+  "Invisibility😏": {
+    "identity": {
+      "name": "Invisibility",
+      "type": "manipulation",
+      "requiredLevel": 140
+    },
+    "behaviour": "invisible",
+    "invisible": {
+      "durationEffect": 7000
+    },
+    "cost": {
+      "manaCost": 30,
+      "cooldown": 12000,
+      "castTime": 150
+    }
+  },
+
+  "With this treasure i summon😏": {
+    "identity": {
+      "name": "With this treasure i summon",
+      "type": "summoning",
+      "requiredLevel": 150
+    },
+    "behaviour": "summoning",
+    "summoning": {
+      "durationEffect": 8000
+    },
+    "cost": {
+      "manaCost": 75,
+      "cooldown": 12000,
+      "castTime": 250
+    }
+  },
+
+  
+  
+
+  "Immortality": {
+    "identity" : {
+    "name" : "Ice spikes",
+    "type" : "Cold",
+    "requiredLevel" : 50
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 120,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 12000,
+      "castTime" : 250
+    }
+  },
+
+  "Absolute zero": {
+    "identity" : {
+    "name" : "Ice spikes",
+    "type" : "Cold",
+    "requiredLevel" : 50
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 120,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 12000,
+      "castTime" : 250
+    }
+  },
+
+  "Burning steel cage": {
+     "identity" : {
+    "name" : "Ice spikes",
+    "type" : "Cold",
+    "requiredLevel" : 50
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 120,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 12000,
+      "castTime" : 250
+    }
+  },
+
+  "Chicxulub impactor": {
+    "identity" : {
+    "name" : "Ice spikes",
+    "type" : "Cold",
+    "requiredLevel" : 50
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 120,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 12000,
+      "castTime" : 250
+    }
+  },
+
+  "Bhola cyclone": {
+     "identity" : {
+    "name" : "Ice spikes",
+    "type" : "Cold",
+    "requiredLevel" : 50
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 120,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 12000,
+      "castTime" : 250
+    }
+  },
+
+  "Vines": {
+   "identity" : {
+    "name" : "Vines",
+    "type" : "nature",
+    "requiredLevel" : 210
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 100,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 1000,
+      "castTime" : 250
+    }
+  },
+
+  "Lituya Bay Monster": {
+   "identity" : {
+    "name" :  "Lituya Bay Monster",
+    "type" : "Cold",
+    "requiredLevel" : 50
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 120,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 12000,
+      "castTime" : 250
+    }
+  },
+
+  "ultimate gravitational force": {
+     "identity" : {
+    "name" : "Ice spikes",
+    "type" : "Cold",
+    "requiredLevel" : 50
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 120,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 12000,
+      "castTime" : 250
+    }
+  },
+  "Point of singularity": {
+     "identity" : {
+    "name" : "Ice spikes",
+    "type" : "Cold",
+    "requiredLevel" : 50
+    },
+
+    "behaviour" : "AreaDamage",
+    
+    "AreaDamage" : {
+    "Damage" : 50,
+    "radius" : 120,
+    "duration effect" : 3000
+    },
+    "cost" : {
+      "Manacost" : 50,
+      "Cooldown" : 12000,
+      "castTime" : 250
+    }
+  },
+  "Instant death": {
+    "type": "Special",
+    "name": "Instant death",
+    "cooldown": 700,
+    "areadamage": 30,
+    "manacost": 15,
+    "castTime": 300,
+    "requiredLevel": 270
+  },
+ 
+  "quickDash": {
+    "type": "ability",
+    "name": "Quickdash",
+    "cooldown": 1000
+  }
+}
